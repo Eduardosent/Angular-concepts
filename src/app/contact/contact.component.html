@@ -1,0 +1,35 @@
+<h1 class="text-center">Template Form and Reactive Form</h1>
+<p  class="text-center">only have validations on the inputs</p>
+<form  [formGroup]="formularioContacto" (ngSubmit)="enviar()">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Name</label>
+      <input [ngClass]="{'is-invalid' : hasErrors('name','required')  || hasErrors('name','minlength')}" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required formControlName="name">
+      <div class="text-danger" *ngIf="hasErrors('name','required')">Name Required</div>
+      <div class="text-danger" *ngIf="hasErrors('name','minlength')">Name with at least 3 characters</div>
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">LastName</label>
+      <input [ngClass]="{'is-invalid' : hasErrors('lastname','required')  || hasErrors('lastname','minlength')}" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required formControlName="lastname">
+      <div class="text-danger" *ngIf="hasErrors('lastname','required')">LastName Required</div>
+      <div class="text-danger" *ngIf="hasErrors('lastname','minlength')">LastName with at least 3 characters</div>
+    </div>
+    <label for="">Tpo de documento: {{tipoDni}}</label>
+    <select class="form-select" aria-label="Default select example" formControlName="tipoDni">
+      <option selected>{{tipoDni}}</option>
+      <option value="DNI">DNI</option>
+      <option value="Passport">Passport</option>
+      <option value="License">License</option>
+    </select>
+    <app-tipodni-input [tipodni]="tipoDni"/>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Email</label>
+      <input [ngClass]="{'is-invalid' : hasErrors('email','required') || hasErrors('email','email')}" type="email" class="form-control" id="exampleInputPassword1" required  formControlName="email">
+      <div class="text-danger" *ngIf="hasErrors('email','required')">Email Required</div>
+      <div class="text-danger" *ngIf="hasErrors('email','email')">Email Invalid </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+<!--forms de tipo template : 1.[ngModelOptions]="{standalone : true}"
+y 2.[(ngModel)]="user.name" 
+talvez #myform="ngForm"-->

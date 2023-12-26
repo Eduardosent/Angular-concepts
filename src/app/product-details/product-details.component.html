@@ -1,0 +1,33 @@
+
+<ng-container *ngIf="!loading">
+        <div class="centrar">
+            <div class="card" style="width: 18rem;">
+                <img src="{{producto?.image}}" class="card-img-top" alt="{{producto?.title}}">
+                <div class="card-body">
+                  <h5 class="card-title">{{producto?.title | uppercase}}</h5>
+                  <h6 class="card-text">{{producto?.price | currency}}</h6>
+                  <p class="card-text">{{producto?.description}}</p>
+                </div>
+              </div>
+        </div>
+</ng-container>
+    <ng-container *ngIf="loading">
+        <h2 class="blue">Cargado....</h2>
+    </ng-container>
+<style>
+        .centrar{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .centrar h1{
+        text-align: center;
+    }
+    .blue{
+        color: blue;
+    }
+    .red{
+        color: red;
+    }
+</style>
